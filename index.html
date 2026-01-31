@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Studio – Free</title>
+    <link rel="shortcut icon" href="logo.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded" rel="stylesheet" />
+</head>
+
+<body>
+
+    <header class="topbar">
+        <h1>QR Studio</h1>
+        <span class="badge free">FREE</span>
+    </header>
+
+    <div class="app">
+        <aside class="controls">
+
+            <section>
+                <label>QR Content</label>
+                <input id="data" placeholder="https://example.com or any text" autocomplete="off">
+            </section>
+
+            <!-- STYLE PRESETS -->
+            <section>
+                <button class="collapse-toggle" id="styleToggle">
+                    Style Presets <span id="styleArrow">▼</span>
+                </button>
+                <div class="preset-grid hidden" id="stylePresets">
+                    <button data-style="soft">Soft</button>
+                    <button data-style="modern">Modern</button>
+                    <button data-style="classy">Classy</button>
+                    <button data-style="premium">Premium</button>
+                </div>
+            </section>
+
+            <!-- GRADIENT PRESETS -->
+            <section>
+                <button class="collapse-toggle" id="gradientToggle">
+                    Gradient Presets <span id="gradArrow">▼</span>
+                </button>
+                <div class="preset-grid hidden" id="gradientPresets">
+                    <button data-grad="#000000,#000000">Black & White</button>
+                    <button data-grad="#00f5ff,#6366f1">Neon</button>
+                    <button data-grad="#38bdf8,#6366f1">Digital Sky</button>
+                    <button data-grad="#ec4899,#8b5cf6">Synth Dusk</button>
+                    <button data-grad="#22c55e,#15803d">Emerald</button>
+                    <button data-grad="#FF0F7B,#F89B29">Sunset Candy</button>
+                    <button data-grad="#EB5757,#000000">Coal</button>
+                    <button data-grad="#40C9FF,#E81CFF">Cosmic Pop</button>
+                    <button id="customGradientBtn">Custom</button>
+
+                    <div id="customGradientPanel" class="custom-gradient hidden">
+                        <div class="color-row">
+                            <label>From</label>
+                            <input type="color" id="gradColorA" value="#000000">
+                            <input type="text" id="gradHexA" value="#000000">
+                        </div>
+
+                        <div class="color-row">
+                            <label>To</label>
+                            <input type="color" id="gradColorB" value="#000000">
+                            <input type="text" id="gradHexB" value="#000000">
+                        </div>
+                    </div>
+
+                </div>
+            </section>
+
+            <!-- ADVANCED CONTROLS -->
+            <section>
+                <label>Dot Shape</label>
+                <select id="dotStyle">
+                    <option value="square">Square</option>
+                    <option value="rounded">Rounded</option>
+                    <option value="extra-rounded">Extra Rounded</option>
+                    <option value="classy">Classy</option>
+                    <option value="classy-rounded">Classy Rounded</option>
+                </select>
+            </section>
+
+            <section>
+                <label>Corner Box Style</label>
+                <select id="cornerSquare">
+                    <option value="square">Square</option>
+                    <option value="extra-rounded">Rounded</option>
+                </select>
+            </section>
+
+            <section>
+                <label>Corner Dot Style</label>
+                <select id="cornerDot">
+                    <option value="square">Square</option>
+                    <option value="dot">Dot</option>
+                </select>
+            </section>
+
+            <section>
+                <label>Logo</label>
+
+                <div class="logo-box" id="logoBox">
+                    <span class="logo-placeholder">Click to upload logo</span>
+                    <img id="logoPreview" hidden>
+                </div>
+
+                <input id="logo" type="file" accept="image/*">
+                <input id="margin" type="range" min="4" max="20" value="8">
+            </section>
+
+            <section>
+                <label>Error Correction</label>
+                <select id="errorCorrection">
+                    <option value="L">Low</option>
+                    <option value="M">Medium</option>
+                    <option value="Q">Quartile</option>
+                    <option value="H" selected>High (recommended)</option>
+                </select>
+            </section>
+
+            <section class="brand-check" id="brandCheck"></section>
+
+            <section>
+                <label>Download Size</label>
+                <select id="downloadSize">
+                    <option value="256">256 × 256</option>
+                    <option value="512" selected>512 × 512</option>
+                    <option value="1024">1024 × 1024</option>
+                </select>
+            </section>
+
+            <section class="actions">
+                <button id="png">Download PNG</button>
+                <button id="jpg" class="secondary">Download JPG</button>
+            </section>
+
+        </aside>
+
+        <main class="preview">
+            <div class="qr-card">
+                <div id="qr"></div>
+            </div>
+            <p>Live preview • Default scan-safe QR</p>
+        </main>
+    </div>
+
+    <!-- MOBILE CONTROL DOCK (PORTRAIT ONLY) -->
+    <div class="mobile-dock">
+        <button data-panel="input">
+            <span class="material-symbols-rounded">link</span>
+        </button>
+        <button data-panel="preset">
+            <span class="material-symbols-rounded">palette</span>
+        </button>
+        <button data-panel="custom">
+            <span class="material-symbols-rounded">tune</span>
+        </button>
+        <button data-panel="download">
+            <span class="material-symbols-rounded">download</span>
+        </button>
+    </div>
+
+    <!-- MOBILE DRAWER -->
+    <div class="mobile-drawer hidden" id="mobileDrawer">
+        <div class="drawer-content" id="drawerContent"></div>
+    </div>
+
+
+    <script src="script.js"></script>
+</body>
+
+</html>
