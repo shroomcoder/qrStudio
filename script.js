@@ -1,6 +1,6 @@
 let gradient = null;
 
-const DEFAULT_DATA = "https://shroomcoder.github.io";
+const DEFAULT_DATA = "https://shroomcoder.github.io/qrStudio/";
 const DEFAULT_LOGO = "logo.png";
 
 /* Responsive QR size (NO scaling) */
