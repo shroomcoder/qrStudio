@@ -1,6 +1,6 @@
 # QR Studio
 
-[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://shroomcoder.github.io)
+[![Live Demo](https://img.shields.io/badge/demo-live-brightgreen)](https://shroomcoder.github.io/qrStudio/)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 A free, modern QR code generator with advanced customization options. Create beautiful, scan-safe QR codes with gradients, custom logos, and multiple style presets.
@@ -18,7 +18,7 @@ A free, modern QR code generator with advanced customization options. Create bea
 
 ## 🚀 Live Demo
 
-Visit the live application: [https://shroomcoder.github.io](https://shroomcoder.github.io)
+Visit the live application: [https://shroomcoder.github.io/qrStudio/](https://shroomcoder.github.io/qrStudio/)
 
 <!-- QR Code to Live Site -->
 ![QR Code to Live Site](qr-code.png)
@@ -121,7 +121,7 @@ qr-studio/
 ### Default Settings
 
 ```javascript
-const DEFAULT_DATA = "https://shroomcoder.github.io";
+const DEFAULT_DATA = "https://shroomcoder.github.io/qrStudio/";
 const DEFAULT_LOGO = "logo.png";
 
 // QR Code defaults
