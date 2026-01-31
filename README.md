@@ -29,7 +29,7 @@ Visit the live application: [https://shroomcoder.github.io](https://shroomcoder.
 ![Desktop Interface](screenshot-desktop.png)
 
 ### Mobile View
-![Mobile Interface](screenshot-mobile.png)
+<img src="screenshot-mobile.png" alt="Mobile Interface" width="375">
 
 ## 🛠️ Technologies Used
 
