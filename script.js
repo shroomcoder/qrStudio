@@ -1,9 +1,11 @@
 let gradient = null;
 
+let isDefaultQR = true;
+const clearBtn = document.getElementById("clearInput");
 const DEFAULT_DATA = "https://shroomcoder.github.io/qrStudio/";
 const DEFAULT_LOGO = "logo.png";
 
-/* Responsive QR size (NO scaling) */
+/* Responsive QR size */
 function getQRSize() {
     return window.innerWidth <= 900 ? 260 : 300;
 }
@@ -29,16 +31,27 @@ let qr = new QRCodeStyling({
 const qrContainer = document.getElementById("qr");
 qr.append(qrContainer);
 
-/* Never expose default URL */
+
 data.value = "";
 
-/* Handle resize without scaling */
+data.addEventListener("input", () => {
+    if (data.value.trim() !== "") {
+        isDefaultQR = false;
+    }
+});
+
 window.addEventListener("resize", () => {
     qr.update({
         width: getQRSize(),
         height: getQRSize()
     });
 });
+
+
+data.addEventListener("input", () => {
+    clearBtn.style.display = data.value ? "block" : "none";
+});
+
 
 /* Collapsibles */
 styleToggle.onclick = () => {
@@ -51,7 +64,7 @@ gradientToggle.onclick = () => {
     gradArrow.textContent = gradientPresets.classList.contains("hidden") ? "▼" : "▲";
 };
 
-/* Style presets (NO gradients here) */
+/* Style presets */
 const STYLE_PRESETS = {
     soft: { dots: "rounded", cornerSquare: "extra-rounded", cornerDot: "dot" },
     modern: { dots: "extra-rounded", cornerSquare: "square", cornerDot: "dot" },
@@ -63,7 +76,6 @@ document.querySelectorAll("[data-style]").forEach(btn => {
     btn.onclick = () => {
         const p = STYLE_PRESETS[btn.dataset.style];
 
-        /* Force Black & White */
         gradient = null;
 
         dotStyle.value = p.dots;
@@ -159,6 +171,8 @@ logo.onchange = () => {
     const file = logo.files[0];
     if (!file) return;
 
+    isDefaultQR = false;
+
     const url = URL.createObjectURL(file);
     logoPreview.src = url;
     logoPreview.hidden = false;
@@ -179,9 +193,12 @@ function updateQR(forceBW = false) {
             : { type: dotStyle.value, color: "#000000" },
         cornersSquareOptions: { type: cornerSquare.value },
         cornersDotOptions: { type: cornerDot.value },
-        image: logo.files[0]
-            ? URL.createObjectURL(logo.files[0])
-            : DEFAULT_LOGO,
+        image:
+            logo.files[0]
+                ? URL.createObjectURL(logo.files[0])
+                : isDefaultQR
+                    ? DEFAULT_LOGO
+                    : null,
         imageOptions: {
             margin: parseInt(margin.value) + 6,
             crossOrigin: "anonymous"
@@ -213,10 +230,10 @@ const allSections = Array.from(controls.children);
 
 /* Logical grouping by feature */
 const mobileGroups = {
-    input: [0, 6],                 // QR input + logo picker
-    preset: [1, 2],                // style + gradient
-    custom: [3, 4, 5],              // dot, corner box, corner dot ONLY
-    download: [7, 8, 9, 10]         // error correction, brand check, size, buttons
+    input: [0, 6],
+    preset: [1, 2],
+    custom: [3, 4, 5],
+    download: [7, 8, 9, 10]
 };
 
 
@@ -259,20 +276,37 @@ drawer.onclick = e => {
 
 
 
+clearBtn.onclick = () => {
+    data.value = "";
+    clearBtn.style.display = "none";
+
+    isDefaultQR = true;
+
+    updateQR();
+};
+
 
 /* Downloads */
-png.onclick = () =>
-    qr.download({
-        name: "qr-code",
-        extension: "png",
-        width: parseInt(downloadSize.value),
-        height: parseInt(downloadSize.value)
+function downloadQR(extension) {
+    const size = parseInt(downloadSize.value);
+
+    const prevSize = qr._options.width;
+
+    qr.update({
+        width: size,
+        height: size
     });
 
-jpg.onclick = () =>
     qr.download({
         name: "qr-code",
-        extension: "jpg",
-        width: parseInt(downloadSize.value),
-        height: parseInt(downloadSize.value)
+        extension
     });
+
+    qr.update({
+        width: 300,
+        height: 300
+    });
+}
+
+png.onclick = () => downloadQR("png");
+jpg.onclick = () => downloadQR("jpg");
