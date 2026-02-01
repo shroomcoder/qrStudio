@@ -22,8 +22,14 @@
         <aside class="controls">
 
             <section>
-                <label>QR Content</label>
-                <input id="data" placeholder="https://example.com or any text" autocomplete="off">
+                <label for="data">QR Content</label>
+                <div class="input-wrap">
+                    <input id="data" type="text" placeholder="https://example.com or any text" autocomplete="off">
+                    <button id="clearInput" type="button">
+                        <span class="material-symbols-rounded">Clear</span>
+                    </button>
+                </div>
+
             </section>
 
             <!-- STYLE PRESETS -->
@@ -148,7 +154,7 @@
         </main>
     </div>
 
-    <!-- MOBILE CONTROL DOCK (PORTRAIT ONLY) -->
+    <!-- MOBILE CONTROL DOCK -->
     <div class="mobile-dock">
         <button data-panel="input">
             <span class="material-symbols-rounded">link</span>
