@@ -40,6 +40,43 @@ body {
     margin-bottom: 18px;
 }
 
+.input-wrap {
+    position: relative;
+}
+
+.input-wrap input {
+    padding-right: 42px;
+}
+
+#clearInput {
+    position: absolute;
+    right: 10px;
+    top: 30%;
+    transform: translateY(-50%);
+
+    height: 24px;
+    width: 24px;
+
+    display: none;
+    align-items: center;
+    justify-content: center;
+
+    border: none;
+    background: transparent;
+    cursor: pointer;
+    color: #6b7280;
+}
+
+#clearInput .material-symbols-rounded {
+    font-size: 20px;
+    line-height: 1;
+}
+
+#clearInput:hover {
+    color: #111827;
+}
+
+
 label {
     font-size: 13px;
     font-weight: 600;
@@ -79,7 +116,6 @@ button {
     cursor: pointer;
 }
 
-/* Make custom gradient controls span full width */
 #customGradientBtn,
 #customGradientPanel {
     grid-column: 1 / -1;
@@ -177,24 +213,21 @@ button.secondary {
     display: none;
 }
 
-/* Download section button spacing */
+
 .actions button+button {
     margin-top: 10px;
 }
 
-/* Universal section spacing (desktop + mobile drawer) */
 .controls section,
 .drawer-content section {
     margin-bottom: 18px;
 }
 
-/* Prevent extra space at bottom */
 .controls section:last-child,
 .drawer-content section:last-child {
     margin-bottom: 0;
 }
 
-/* Extra breathing room before download buttons */
 .drawer-content .actions {
     margin-top: 12px;
 }
@@ -206,8 +239,6 @@ button.secondary {
     border-radius: 14px;
     background: #f9fafb;
     border: 1px solid #e5e7eb;
-
-    /* NEW */
     width: 100%;
 }
 
@@ -257,7 +288,6 @@ button.secondary {
         padding-bottom: 90px;
     }
 
-    /* SHOW mobile UI ONLY in portrait */
     .mobile-dock {
         display: flex;
         position: fixed;
